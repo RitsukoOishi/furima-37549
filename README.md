@@ -54,3 +54,10 @@
 |building_number   |string    |                            |
 |phone             |string    |null:false                  |
 |user              |references|null:false,foreign_key: true|
+
+##recodesテーブル
+|column            |Type      |Options                     |
+|------------------|----------|----------------------------|
+|seller            |string    |null:false                  |
+|user              |references|null:false,foreign_key: true|
+|item              |references|null:false,foreign_key: true|
