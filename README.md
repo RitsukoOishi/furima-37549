@@ -1,24 +1,56 @@
-# README
+#テーブル設計
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+##usersテーブル
+|column            |Type   |Options                        |
+|------------------|-------|-------------------------------|
+|email             |string |null:false                     |
+|password          |string |null:false                     |
+|encrypted_password|string |null:false                     |
+|nickname          |string |null:false                     |
+|lastname          |string |null:false                     |
+|firstname         |string |null:false                     |
+|birth_year        |integer|null:false                     |
+|birth_month       |integer|null:false                     |
+|birth_day         |integer|null:false                     |
 
-Things you may want to cover:
+##itemsテーブル
+|column            |Type      |Options                     |
+|------------------|----------|----------------------------|
+|title             |string    |null:false                  |
+|content           |text      |null:false                  |
+|genre             |string    |null:false                  |
+|condition         |string    |null:false                  |
+|fee               |string    |null:false                  |
+|area              |string    |null:false                  |
+|days              |string    |null:false                  |
+|price             |integer   |null:false                  |
+|user              |references|null:false,foreign_key: true|
 
-* Ruby version
+##item_genresテーブル
+|column            |Type      |Options                     |
+|------------------|----------|----------------------------|
+|item              |references|null:false,foreign_key: true|
+|genre             |references|null:false,foreign_key: true|
 
-* System dependencies
+##genresテーブル
+|column            |Type      |Options                     |
+|------------------|----------|----------------------------|
+|genre             |string    |null:false                  |
 
-* Configuration
+##commentsテーブル
+|column            |Type      |Options                     |
+|------------------|----------|----------------------------|
+|content_comment   |text      |null:false                  |
+|item              |references|null:false,foreign_key: true|
+|user              |references|null:false,foreign_key: true|
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+##deliverysテーブル
+|column            |Type      |Options                     |
+|------------------|----------|----------------------------|
+|post_code         |string    |null:false                  |
+|prefecture        |string    |null:false                  |
+|city              |string    |null:false                  |
+|house             |string    |null:false                  |
+|building_number   |string    |                            |
+|phone             |string    |null:false                  |
+|user              |references|null:false,foreign_key: true|
