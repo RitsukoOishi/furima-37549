@@ -14,8 +14,7 @@
 
 ### association
 - has_many :items
-- has_many :comments
-- has_one  :deliveries
+- has_many :recodes
 
 ##itemsテーブル
 |column            |Type      |Options                     |
@@ -31,26 +30,14 @@
 |user              |references|null:false,foreign_key: true|
 
 ### association
-- belongs_to :users
-- has_many :comments
-- has_one :deliveries,through: recode
-
-##commentsテーブル
-|column            |Type      |Options                     |
-|------------------|----------|----------------------------|
-|content_comment   |text      |null:false                  |
-|item              |references|null:false,foreign_key: true|
-|user              |references|null:false,foreign_key: true|
-
-### association
 - belongs_to :user
-- belongs_to :comment
+- has_one    :recode
 
 ##deliveriesテーブル
 |column            |Type      |Options                     |
 |------------------|----------|----------------------------|
 |post_code         |string    |null:false                  |
-|prefecture        |string    |null:false                  |
+|prefecture_id     |integer   |null:false                  |
 |city              |string    |null:false                  |
 |house             |string    |null:false                  |
 |building_number   |string    |                            |
@@ -59,14 +46,16 @@
 
 
 ### association
-- has_many :recodes
+- belongs_to :recode
 
 ##recodesテーブル
 |column            |Type      |Options                     |
 |------------------|----------|----------------------------|
-|buyer             |references|null:false,foreign_key: true|
+|user              |references|null:false,foreign_key: true|
 |item              |references|null:false,foreign_key: true|
+|delivery          |references|null:false,foreign_key: true|
 
 ### association
 - belongs_to :items
-- belongs_to :deliveries
+- has_one    :delivery
+- belongs_to :user
