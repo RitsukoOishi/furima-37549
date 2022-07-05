@@ -1,24 +1,60 @@
-# README
+#テーブル設計
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+##usersテーブル
+|column            |Type   |Options                        |
+|------------------|-------|-------------------------------|
+|email             |string |null:false,unique:true         |
+|encrypted_password|string |null:false                     |
+|nickname          |string |null:false                     |
+|last_name         |string |null:false                     |
+|first_name        |string |null:false                     |
+|last_name_kana    |string |null:false                     |
+|first_name_kana   |string |null:false                     |
+|birthday          |date   |null:false                     |
 
-Things you may want to cover:
+### association
+- has_many :items
+- has_many :records
 
-* Ruby version
+##itemsテーブル
+|column            |Type      |Options                     |
+|------------------|----------|----------------------------|
+|title             |string    |null:false                  |
+|content           |text      |null:false                  |
+|genre_id          |integer   |null:false                  |
+|condition_id      |integer   |null:false                  |
+|fee_id            |integer   |null:false                  |
+|prefecture_id     |integer   |null:false                  |
+|days_num_id       |integer   |null:false                  |
+|price             |integer   |null:false                  |
+|user              |references|null:false,foreign_key: true|
 
-* System dependencies
+### association
+- belongs_to :user
+- has_one    :record
 
-* Configuration
+##deliveriesテーブル
+|column            |Type      |Options                     |
+|------------------|----------|----------------------------|
+|post_code         |string    |null:false                  |
+|prefecture_id     |integer   |null:false                  |
+|city              |string    |null:false                  |
+|house             |string    |null:false                  |
+|building_number   |string    |                            |
+|phone             |string    |null:false                  |
+|record            |references|null:false,foreign_key: true|
 
-* Database creation
 
-* Database initialization
+### association
+- belongs_to :record
 
-* How to run the test suite
+##recordsテーブル
+|column            |Type      |Options                     |
+|------------------|----------|----------------------------|
+|user              |references|null:false,foreign_key: true|
+|item              |references|null:false,foreign_key: true|
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+### association
+- belongs_to :item
+- has_one    :delivery
+- belongs_to :user
