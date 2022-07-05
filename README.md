@@ -14,7 +14,7 @@
 
 ### association
 - has_many :items
-- has_many :recodes
+- has_many :records
 
 ##itemsテーブル
 |column            |Type      |Options                     |
@@ -31,7 +31,7 @@
 
 ### association
 - belongs_to :user
-- has_one    :recode
+- has_one    :record
 
 ##deliveriesテーブル
 |column            |Type      |Options                     |
@@ -42,20 +42,19 @@
 |house             |string    |null:false                  |
 |building_number   |string    |                            |
 |phone             |string    |null:false                  |
-|recode            |references|null:false,foreign_key: true|
+|record            |references|null:false,foreign_key: true|
 
 
 ### association
-- belongs_to :recode
+- belongs_to :record
 
-##recodesテーブル
+##recordsテーブル
 |column            |Type      |Options                     |
 |------------------|----------|----------------------------|
 |user              |references|null:false,foreign_key: true|
 |item              |references|null:false,foreign_key: true|
-|delivery          |references|null:false,foreign_key: true|
 
 ### association
-- belongs_to :items
+- belongs_to :item
 - has_one    :delivery
 - belongs_to :user
