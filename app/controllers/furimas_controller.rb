@@ -1,12 +1,18 @@
 class FurimasController < ApplicationController
   def index
-    @furimas = Furima.all
+    #@furimas = Furima.all
+    @furimas = Furima.order("created_at DESC")
   end
   def new
     @furima = Furima.new
   end
   def create
     Furima.create(furima_params)
+    if @furima.save
+      redirect_to root_path
+    else
+      render :new
+    end
   end
 
   private
