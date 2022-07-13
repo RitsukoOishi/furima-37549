@@ -3,7 +3,7 @@ function count (){
   price.addEventListener("keyup", () => {
     
     const price_num = price.value
-    const commission =Number(price_num) * 0.1;
+    const commission =parseInt(Number(price_num)*0.1, 10)
     const profit_num = Number(price_num) - commission
     const commission_display  = document.getElementById("add-tax-price");
     commission_display.innerHTML = `${commission.toLocaleString()}`;
