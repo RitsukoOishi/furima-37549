@@ -4,6 +4,7 @@ class FurimasController < ApplicationController
     @furimas = Furima.order("created_at DESC")
   end
   def new
+    authenticate_user!
     @furima = Furima.new
   end
   def create
@@ -12,6 +13,16 @@ class FurimasController < ApplicationController
       redirect_to root_path
     else
       render :new
+    end
+  end
+  def edit
+  end
+
+  def update
+    if current_furima.update(furima_params)
+      redirect_to root_path
+    else
+      render :edit
     end
   end
 

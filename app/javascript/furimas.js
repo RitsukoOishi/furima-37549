@@ -6,10 +6,10 @@ function count (){
     const commission =Number(price_num) * 0.1;
     const profit_num = Number(price_num) - commission
     const commission_display  = document.getElementById("add-tax-price");
-    commission_display.innerHTML = `${commission}`;
+    commission_display.innerHTML = `${commission.toLocaleString()}`;
 
     const profit_display = document.getElementById("profit");
-    profit_display.innerHTML = `${profit_num}`;
+    profit_display.innerHTML = `${profit_num.toLocaleString()}`;
   });
 };
 
