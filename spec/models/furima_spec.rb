@@ -52,6 +52,11 @@ RSpec.describe Furima, type: :model do
         @furima.valid?
         expect(@furima.errors.full_messages).to include("Days num can't be blank")
       end
+      it "priceが空では登録できない" do
+        @furima.price = ''
+        @furima.valid?
+        expect(@furima.errors.full_messages).to include("Price can't be blank")
+      end
       it "titleが40文字より多いと登録できない" do
         @furima.title = Faker::Lorem.characters(number: 41)
         @furima.valid?
@@ -82,6 +87,7 @@ RSpec.describe Furima, type: :model do
         @furima.valid?
         expect(@furima.errors.full_messages).to include("Price must be less than or equal to 9999999")
       end
+
       it "ユーザーが紐づいていないと登録できない" do
         @furima.user = nil
         @furima.valid?
