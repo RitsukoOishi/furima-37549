@@ -12,7 +12,10 @@ RSpec.describe Furima, type: :model do
       end
     end
     context '新規登録できない場合' do
-      it "imageが空では登録できない" do        
+      it "imageが空では登録できない" do
+        @furima.image = nil
+        @furima.valid?
+        expect(@furima.errors.full_messages).to include("Image can't be blank")
       end
       it "titleが空では登録できない" do
         @furima.title = ''
@@ -50,12 +53,12 @@ RSpec.describe Furima, type: :model do
         expect(@furima.errors.full_messages).to include("Days num can't be blank")
       end
       it "titleが40文字より多いと登録できない" do
-        @furima.title=Faker::Lorem.sentence(word_count: 41)
+        @furima.title = Faker::Lorem.characters(number: 41)
         @furima.valid?
         expect(@furima.errors.full_messages).to include("Title is too long (maximum is 40 characters)") 
       end
       it "contentが1,000文字より多いと登録できない" do
-        @furima.content=Faker::Lorem.sentence(word_count: 1001)
+        @furima.content = Faker::Lorem.characters(number: 1001)
         @furima.valid?
         expect(@furima.errors.full_messages).to include("Content is too long (maximum is 1000 characters)")         
       end
@@ -73,6 +76,16 @@ RSpec.describe Furima, type: :model do
         @furima.price ="aaa"
         @furima.valid?
         expect(@furima.errors.full_messages).to include("Price is not a number")
+      end
+      it "priceが9,999,999より大きいと登録できない" do
+        @furima.price =10000000
+        @furima.valid?
+        expect(@furima.errors.full_messages).to include("Price must be less than or equal to 9999999")
+      end
+      it "ユーザーが紐づいていないと登録できない" do
+        @furima.user = nil
+        @furima.valid?
+        expect(@furima.errors.full_messages).to include("User must exist")
       end
     end
   end
