@@ -3,7 +3,7 @@ class FurimasController < ApplicationController
 
   def index
     @furimas = Furima.order("created_at DESC")
-    @record = Record.all
+    #@record = Record.all
   end
   def new
     @furima = Furima.new

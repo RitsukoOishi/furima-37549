@@ -131,11 +131,11 @@
       <% if  @furimas.present? %>
         <% @furimas.each do |furima| %>
           <li class='list'>
-            <% if @record = nil %>
+            <%# if @record = nil %>
             <div class='sold-out'>
               <span>Sold Out!!</span>
             </div>
-            <% end %>
+            <%# end %>
           <div class='item-img-content'>
             <%= image_tag furima.image, class: 'item-img' if furima.image.attached? %>
             </div>
