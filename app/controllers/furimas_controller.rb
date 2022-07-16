@@ -1,9 +1,10 @@
 class FurimasController < ApplicationController
   before_action :authenticate_user!, except: [:index]
 
-  #def index
-    #@furimas = Furima.order("created_at DESC")
-  #end
+  def index
+    @furimas = Furima.order("created_at DESC")
+    #@record = Record.all
+  end
   def new
     @furima = Furima.new
   end

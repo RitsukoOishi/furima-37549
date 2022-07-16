@@ -6,4 +6,4 @@ class Fee < ActiveHash::Base
   ]
   include ActiveHash::Associations
   has_many :furimas
-  end
+end
