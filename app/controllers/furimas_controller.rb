@@ -4,7 +4,6 @@ class FurimasController < ApplicationController
 
   def index
     @furimas = Furima.order("created_at DESC")
-    #@record = Record.all
   end
 
   def new
@@ -23,8 +22,17 @@ class FurimasController < ApplicationController
   def show
   end
 
-  #def edit
-  #end
+  def edit
+  end
+
+  def update
+    furima = Furima.find(params[:id])
+    if furima.update(furima_params)
+      redirect_to furima_path(furima)
+    else
+      render :edit
+    end
+  end
 
   private
   def furima_params
