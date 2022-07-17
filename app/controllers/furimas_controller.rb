@@ -1,6 +1,6 @@
 class FurimasController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
-  before_action :set_furima, only: [:edit, :show, :update, :destroy]
+  before_action :set_furima, only: [:edit, :show, :update]
 
   def index
     @furimas = Furima.order("created_at DESC")
@@ -35,18 +35,6 @@ class FurimasController < ApplicationController
       render :edit
     end
   end
-
-  def destroy
-    if  current_user.id == @furima.user_id
-      if @furima.destroy
-        redirect_to root_path
-      else
-        redirect_to furima_path(@furima)
-      end
-    else
-      redirect_to furima_path(@furima)
-    end
-  end  
 
   private
   def furima_params
