@@ -23,7 +23,7 @@ class FurimasController < ApplicationController
   end
 
   def edit
-    unless user_signed_in? && current_user.id == @furima.user_id
+    unless current_user.id == @furima.user_id
       redirect_to action: :index
     end
   end
