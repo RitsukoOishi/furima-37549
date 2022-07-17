@@ -41,7 +41,7 @@ class FurimasController < ApplicationController
       if @furima.destroy
         redirect_to root_path
       else
-        #redirect_to furima_path(@furima)
+        redirect_to furima_path(@furima)
       end
     else
       redirect_to furima_path(@furima)
