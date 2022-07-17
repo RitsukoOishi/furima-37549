@@ -43,6 +43,8 @@ class FurimasController < ApplicationController
       else
         redirect_to furima_path(@furima)
       end
+    else
+      redirect_to furima_path(@furima)
     end
   end  
 
