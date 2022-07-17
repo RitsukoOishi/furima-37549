@@ -17,5 +17,5 @@ class User < ApplicationRecord
     validates :first_name_kana
   end
   has_many :furimas
-  #has_many :records
+  has_many :records
 end

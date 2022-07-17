@@ -16,7 +16,7 @@
 - has_many :items
 - has_many :records
 
-##itemsテーブル
+##furimasテーブル
 |column            |Type      |Options                     |
 |------------------|----------|----------------------------|
 |title             |string    |null:false                  |
