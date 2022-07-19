@@ -11,12 +11,21 @@ RSpec.describe RecordDelivery, type: :model do
 
     context '内容に問題ない場合' do
       it 'すべての値が正しく入力されていれば保存できること' do
+        expect(@record_delivery).to be_valid
       end
       it 'building_numberは空でも保存できること' do
+        @record_delivery.building_number = ''
+        expect(@record_delivery).to be_valid
       end
     end
 
     context '内容に問題がある場合' do
+      it 'tokenが空では保存できないこと' do
+        @record_delivery.token = nil
+        @record_delivery.valid?
+        expect(@record_delivery.errors.full_messages).to include("Token can't be blank")
+      end
+      
       it 'post_codeが空だと保存できないこと' do
         @record_delivery.post_code = ''
         @record_delivery.valid?

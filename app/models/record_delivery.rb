@@ -2,7 +2,7 @@ class RecordDelivery
   include ActiveModel::Model
   attr_accessor :post_code, :prefecture_id, :city, :house, :building_number,\
    :phone, :record_id, :user_id, :furima_id, :price
-   
+   attr_accessor :token
    with_options presence: true do
     validates :user_id
     validates :furima_id
@@ -10,6 +10,7 @@ class RecordDelivery
     validates :city
     validates :house
     validates :phone,format: {with: /\A\d{11}\z/ }
+    validates :token
   end
   validates :prefecture_id, numericality: {other_than: 1, message: "can't be blank"}
 
