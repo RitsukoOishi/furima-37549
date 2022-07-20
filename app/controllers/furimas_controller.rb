@@ -15,7 +15,7 @@ class FurimasController < ApplicationController
     if @furima.save
       redirect_to root_path
     else
-      render :edit
+      render :new
     end
   end
 
