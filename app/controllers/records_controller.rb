@@ -2,22 +2,24 @@ class RecordsController < ApplicationController
   before_action :authenticate_user!, except: :index
   def index
     @furima = Furima.find(params[:furima_id])
-    @record_delivery = RecordDelivery.new
+    unless  Record.exists?(furima_id:@furima.id) || current_user.id == @furima.user_id
+      @record_delivery = RecordDelivery.new
+    else
+      redirect_to root_path
+    end
   end
 
-  #def new
-    #@record_delivery = RecordDelivery.new
-  #end
   def create
     @furima = Furima.find(params[:furima_id])
     @record_delivery = RecordDelivery.new(record_params)
-    if @record_delivery.valid?
-      pay_item
-      @record_delivery.save
-      redirect_to root_path
-    else
-      render :index
-    end
+
+      if @record_delivery.valid?
+        pay_item
+        @record_delivery.save
+        redirect_to root_path
+      else
+        render :index
+      end
   end
 
   private
