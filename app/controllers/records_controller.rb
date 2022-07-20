@@ -1,5 +1,5 @@
 class RecordsController < ApplicationController
-  before_action :authenticate_user!, except: :index
+  before_action :authenticate_user!
   def index
     @furima = Furima.find(params[:furima_id])
     unless  Record.exists?(furima_id:@furima.id) || current_user.id == @furima.user_id
