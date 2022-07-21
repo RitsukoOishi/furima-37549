@@ -17,6 +17,11 @@ RSpec.describe RecordDelivery, type: :model do
         @record_delivery.building_number = ''
         expect(@record_delivery).to be_valid
       end
+      it 'phoneは10桁でも保存できること' do
+        @record_delivery.phone = '0123456789'
+        expect(@record_delivery).to be_valid
+      end      
+      
     end
 
     context '内容に問題がある場合' do
@@ -61,13 +66,28 @@ RSpec.describe RecordDelivery, type: :model do
         @record_delivery.valid?
         expect(@record_delivery.errors.full_messages).to include("Phone is invalid")
       end
-      it 'phone10桁より少ないと保存できない' do
-        @record_delivery.phone = '0123456789'
+      it 'phone9桁より少ないと保存できない' do
+        @record_delivery.phone = '012345678'
         @record_delivery.valid?
         expect(@record_delivery.errors.full_messages).to include("Phone is invalid")
       end
       it 'phone11桁より多いと保存できない' do
         @record_delivery.phone = '090123456789'
+        @record_delivery.valid?
+        expect(@record_delivery.errors.full_messages).to include("Phone is invalid")
+      end
+      it 'phone0以外の番号から始まると保存ができない' do
+        @record_delivery.phone = '12345678901'
+        @record_delivery.valid?
+        expect(@record_delivery.errors.full_messages).to include("Phone is invalid")
+      end
+      it 'phoneが半角数字以外だと保存ができない' do
+        @record_delivery.phone = '０９０１２３４５６７８'
+        @record_delivery.valid?
+        expect(@record_delivery.errors.full_messages).to include("Phone is invalid")
+      end
+      it 'phoneにアルファベットが含まれると保存ができない' do
+        @record_delivery.phone = 'abcdefghijk'
         @record_delivery.valid?
         expect(@record_delivery.errors.full_messages).to include("Phone is invalid")
       end
