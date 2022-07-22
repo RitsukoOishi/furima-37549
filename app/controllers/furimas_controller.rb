@@ -24,7 +24,6 @@ class FurimasController < ApplicationController
 
   def edit
     unless Record.exists?(furima_id: @furima.id) || current_user.id != @furima.user_id
-        redirect_to action: :index
     else
       redirect_to root_path
     end
