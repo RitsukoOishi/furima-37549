@@ -20,7 +20,11 @@ RSpec.describe RecordDelivery, type: :model do
       it 'phoneは10桁でも保存できること' do
         @record_delivery.phone = '0123456789'
         expect(@record_delivery).to be_valid
-      end      
+      end 
+      it 'phone0以外の番号から始まっても保存ができる' do
+        @record_delivery.phone = '12345678901'
+        expect(@record_delivery).to be_valid
+      end     
       
     end
 
@@ -76,11 +80,7 @@ RSpec.describe RecordDelivery, type: :model do
         @record_delivery.valid?
         expect(@record_delivery.errors.full_messages).to include("Phone is invalid")
       end
-      it 'phone0以外の番号から始まると保存ができない' do
-        @record_delivery.phone = '12345678901'
-        @record_delivery.valid?
-        expect(@record_delivery.errors.full_messages).to include("Phone is invalid")
-      end
+
       it 'phoneが半角数字以外だと保存ができない' do
         @record_delivery.phone = '０９０１２３４５６７８'
         @record_delivery.valid?

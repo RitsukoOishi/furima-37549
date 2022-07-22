@@ -23,10 +23,8 @@ class FurimasController < ApplicationController
   end
 
   def edit
-    unless Record.exists?(furima_id: @furima.id)
-      unless current_user.id == @furima.user_id
+    unless Record.exists?(furima_id: @furima.id) || current_user.id != @furima.user_id
         redirect_to action: :index
-      end
     else
       redirect_to root_path
     end
