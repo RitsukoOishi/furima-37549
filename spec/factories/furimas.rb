@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :furima do
     title         {Faker::Lorem.characters(number: 40)}
-    content       {Faker::Lorem.characters(number: 1000)}
+    content       {Faker::Lorem.characters(number: 50)}
     genre_id      {Faker::Number.between(from: 2, to: 11)}
     condition_id  {Faker::Number.between(from: 2, to: 6)}
     fee_id        {Faker::Number.between(from: 2, to: 3)}
