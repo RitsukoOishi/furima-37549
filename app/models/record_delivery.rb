@@ -1,6 +1,6 @@
 class RecordDelivery
   include ActiveModel::Model
-  attr_accessor :post_code, :prefecture_id, :city, :house, :building_number, :phone, :record_id, :user_id, :furima_id, :price, :token
+  attr_accessor :post_code, :prefecture_id, :city, :house, :building_number, :phone, :user_id, :furima_id, :token
    with_options presence: true do
     validates :user_id
     validates :furima_id
